@@ -153,6 +153,11 @@ h1,h2,h3{font-family:var(--f);font-weight:700;margin:0;text-wrap:balance;letter-
 .sec-head h2{font-size:clamp(34px,4.6vw,64px);line-height:1.02;max-width:16ch}
 .sec-head>div{min-width:0}
 .sec-head p{max-width:46ch;color:var(--bone-dim);font-weight:300;margin:20px 0 0}
+.sec-head.centro{text-align:center}
+.sec-head.centro h2{margin-inline:auto}
+.sec-head h2.largo{max-width:none}
+@media (min-width:761px){#servicos .sec-head p{max-width:none}}
+@media (max-width:760px){.sec-head h2.largo br{display:none}}
 
 /* TRABALHOS: leque de projetos */
 .leque{position:relative;touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:grab;overflow-x:hidden;overflow-x:clip;padding-block:24px 8px;margin-inline:calc(var(--gutter)*-1)}
@@ -235,7 +240,7 @@ dialog.vw[open] .vw-in{animation:fadeUp .8s var(--ease) both}
 .estudio figcaption b{font-size:13px;font-weight:700;letter-spacing:0}
 .estudio figcaption span{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(236,235,230,.75)}
 .estudio h2{font-size:clamp(30px,3.6vw,50px);line-height:1.06;margin:0 0 22px;max-width:18ch}
-.estudio p{color:var(--bone-dim);font-weight:300;margin:0 0 16px;max-width:46ch}
+.estudio p{color:var(--bone-dim);font-weight:300;font-size:clamp(18px,1.55vw,22px);line-height:1.5;margin:0;max-width:56ch}
 @media (max-width:860px){.estudio{grid-template-columns:1fr}.estudio figure{max-width:360px}}
 
 /* FAQ */
@@ -360,7 +365,7 @@ html.intro body::after{content:"";position:fixed;inset:0;background:#050506;z-in
 
   <section class="sec" id="trabalhos" aria-labelledby="tt">
     <div class="wrap">
-      <div class="sec-head">
+      <div class="sec-head centro">
         <div>
           <h2 id="tt" class="split">Marcas construídas com estratégia.</h2>
         </div>
@@ -382,7 +387,7 @@ html.intro body::after{content:"";position:fixed;inset:0;background:#050506;z-in
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <h2 id="ts" class="split">O que sua empresa precisa para dar o próximo passo.</h2>
+          <h2 id="ts" class="split largo">O que sua empresa precisa<br> para dar o próximo passo.</h2>
         </div>
         <p>Contrate um serviço específico ou combine vários em um só projeto.</p>
       </div>
@@ -420,7 +425,7 @@ html.intro body::after{content:"";position:fixed;inset:0;background:#050506;z-in
       <figure class="rv"><img src="img/wesley.webp" alt="Wesley Sá, publicitário da Dáblio, sentado à mesa de trabalho" loading="lazy" width="900" height="1125" id="fotoW"><figcaption><b>Wesley Sá</b><span>Publicitário</span></figcaption></figure>
       <div>
         <h2 id="te" class="split">Sua marca, com direção e proximidade.</h2>
-        <p>Agência de publicidade de Mossoró, RN, fundada por Wesley Sá em 2003. Você fala direto com quem cria, do briefing à entrega.</p>
+        <p>Fundada por Wesley Sá em 2003, em Mossoró, RN, a Dáblio já entregou mais de 500 projetos para empresas de 12 estados. Aqui, você fala direto com quem cria, do briefing à entrega.</p>
       </div>
     </div>
   </section>
