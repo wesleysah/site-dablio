@@ -129,12 +129,10 @@ h1,h2,h3{font-family:var(--f);font-weight:700;margin:0;text-wrap:balance;letter-
 .lq-card{position:absolute;inset:0;padding:0;border:0;border-radius:12px;overflow:hidden;background:var(--ink-2);cursor:inherit;opacity:var(--o,1);z-index:var(--z,1);transform:translate3d(calc(var(--x,0)*1% + var(--dx,0px)),calc(var(--y,0)*1%),0) rotate(calc(var(--r,0)*1deg + var(--dr,0deg))) scale(var(--s,1));transition:transform .9s cubic-bezier(.34,1.45,.5,1),opacity .5s ease;box-shadow:0 30px 70px rgba(0,0,0,.5);will-change:transform}
 .lq-card img{width:100%;height:100%;object-fit:cover;pointer-events:none;-webkit-user-drag:none}
 .lq-card::after{content:"";position:absolute;inset:0;border-radius:inherit;background:rgba(13,13,15,var(--dim,0));box-shadow:inset 0 0 0 1px rgba(236,235,230,.08);pointer-events:none;transition:background .6s ease,box-shadow .4s}
-.lq-card.on:hover::after,.leque:focus-visible .lq-card.on::after{box-shadow:inset 0 0 0 2px var(--sol)}
 .leque.arrastando .lq-card.on{transition:none}
 .leque-info{display:flex;align-items:center;justify-content:center;gap:clamp(16px,3vw,40px);margin-top:36px}
 .leque-txt{text-align:center;width:min(100%,340px);min-width:0}
-.leque-txt .cnt{display:block;font-size:13px;color:var(--mute);font-variant-numeric:tabular-nums;letter-spacing:.08em}
-.leque-txt b{display:block;font-size:clamp(22px,2.4vw,32px);letter-spacing:-.02em;line-height:1.1;margin:8px 0 6px}
+.leque-txt b{display:block;font-size:clamp(22px,2.4vw,32px);letter-spacing:-.02em;line-height:1.1;margin:0 0 6px}
 .leque-txt .seg{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--bone-dim)}
 .leque-dica{text-align:center;margin:18px 0 0;font-size:13px;color:var(--mute);font-weight:300}
 @media (max-width:700px){.leque-palco{--cw:62vw}.leque-info{gap:12px}}
@@ -354,10 +352,10 @@ html.intro body::after{content:"";position:fixed;inset:0;background:#050506;z-in
       </div>
       <div class="leque-info rv">
         <button class="icbtn" type="button" id="lqPrev" aria-label="Projeto anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
-        <div class="leque-txt" aria-live="polite"><span class="cnt" id="lqCnt">01 / 20</span><b id="lqNome"></b><span class="seg" id="lqSeg"></span></div>
+        <div class="leque-txt" aria-live="polite"><b id="lqNome"></b><span class="seg" id="lqSeg"></span></div>
         <button class="icbtn" type="button" id="lqNext" aria-label="Próximo projeto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
       </div>
-      <p class="leque-dica">Arraste para os lados e toque no projeto para ver as 10 páginas.</p>
+      <p class="leque-dica">Clique no projeto para ver mais.</p>
     </div>
   </section>
 
@@ -677,7 +675,7 @@ const LQ={0:[0,0,0,1,1,5,0],1:[58,4,8,.88,1,4,.45],2:[104,10,14,.76,1,3,.65]};
 const cards=CASES.map((c,i)=>{
   const b=document.createElement('button');
   b.className='lq-card';b.type='button';b.tabIndex=-1;
-  b.setAttribute('aria-label',`${c.nome}, ${c.seg}. Ver as ${PAGES} páginas do projeto`);
+  b.setAttribute('aria-label',`${c.nome}, ${c.seg}. Ver o projeto`);
   b.innerHTML=`<img src="${pg(c.id,1)}" alt="" loading="lazy" draggable="false" width="1080" height="1350">`;
   b.addEventListener('click',()=>{if(lqMoveu)return;if(i===ativo)abrir(i,1);else{ativo=i;posLeque()}});
   palco.appendChild(b);return b;
@@ -695,7 +693,6 @@ function posLeque(){
     if(a>2)b.setAttribute('aria-hidden','true');else b.removeAttribute('aria-hidden');
   });
   const c=CASES[ativo];
-  $('#lqCnt').textContent=`${String(ativo+1).padStart(2,'0')} / ${String(n).padStart(2,'0')}`;
   $('#lqNome').textContent=c.nome;$('#lqSeg').textContent=c.seg;
 }
 function girar(d){ativo=(ativo+d+CASES.length)%CASES.length;posLeque()}
