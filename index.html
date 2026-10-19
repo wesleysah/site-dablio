@@ -70,12 +70,11 @@ h1,h2,h3{font-family:var(--f);font-weight:700;margin:0;text-wrap:balance;letter-
 .hero h1{font-size:clamp(40px,6vw,92px);line-height:1.02;margin-top:26px;letter-spacing:-.035em;text-wrap:initial}
 .hero h1 .ln{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
 .hero h1 .ln>span{display:inline-block;text-wrap:balance}
-.hero-base{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:48px;align-items:end;margin-top:clamp(36px,4vw,56px);padding-top:clamp(28px,3vw,40px)}
+.hero-base{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:48px;align-items:end;margin-top:clamp(28px,3vw,40px)}
 .hero p.lead{max-width:44ch;font-size:clamp(16px,1.35vw,19px);font-weight:300;color:var(--bone-dim);margin:0 0 28px}
-.hero-direct{font-size:14px;color:var(--bone);margin:0 0 24px;max-width:42ch}
 .hero .ctas{display:flex;flex-wrap:wrap;gap:12px}
 .hero-side{display:flex;gap:clamp(28px,4vw,64px)}
-.hero-side>div{text-align:center}
+.hero-side>div{text-align:left}
 .hero-side strong{display:block;font-weight:700;font-size:clamp(32px,3.2vw,48px);letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
 .hero-side strong em{font-style:normal;color:var(--sol)}
 .hero-side div>span{display:block;margin-top:8px;font-size:14px;color:var(--bone-dim);font-weight:300;white-space:nowrap}
@@ -116,10 +115,10 @@ h1,h2,h3{font-family:var(--f);font-weight:700;margin:0;text-wrap:balance;letter-
 
 /* SECTION HEAD */
 .sec{padding-block:clamp(80px,10vw,140px)}
-.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-bottom:44px}
-.sec-head h2{font-size:clamp(34px,4.6vw,64px);line-height:1.02;max-width:16ch;margin-top:16px}
+.sec-head{margin-bottom:clamp(36px,4vw,56px)}
+.sec-head h2{font-size:clamp(34px,4.6vw,64px);line-height:1.02;max-width:16ch}
 .sec-head>div{min-width:0}
-.sec-head p{max-width:40ch;color:var(--bone-dim);font-weight:300;margin:0}
+.sec-head p{max-width:46ch;color:var(--bone-dim);font-weight:300;margin:20px 0 0}
 
 /* TRABALHOS: leque de projetos */
 .leque{position:relative;touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:grab;overflow-x:hidden;overflow-x:clip;padding-block:24px 8px;margin-inline:calc(var(--gutter)*-1)}
@@ -179,10 +178,10 @@ dialog.vw[open] .vw-in{animation:fadeUp .8s var(--ease) both}
 .serv-item>button{all:unset;box-sizing:border-box;width:100%;display:grid;grid-template-columns:72px minmax(0,1fr) auto;align-items:center;gap:16px;padding:28px 0;cursor:pointer;font-family:var(--f)}
 .serv-item>button:focus-visible{outline:2px solid var(--sol);outline-offset:4px}
 .serv-item .num{font-size:13px;color:var(--mute);font-variant-numeric:tabular-nums}
-.serv-item .nome{font-weight:700;font-size:clamp(28px,4.2vw,58px);letter-spacing:-.03em;line-height:1;transition:color .3s,transform .6s var(--ease)}
+.serv-item .nome{font-weight:700;font-size:clamp(28px,4.2vw,58px);letter-spacing:-.03em;line-height:1;transition:color .3s}
 .serv-item .mais{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:transform .35s,background .3s,border-color .3s}
 .serv-item .mais svg{width:16px;height:16px}
-.serv-item>button:hover .nome,.serv-item.open .nome{color:var(--sol);transform:translateX(10px)}
+.serv-item>button:hover .nome,.serv-item.open .nome{color:var(--sol)}
 .serv-item.open .mais{transform:rotate(45deg);background:var(--sol);border-color:var(--sol);color:var(--sol-ink)}
 .serv-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .7s var(--ease)}
 .serv-item.open .serv-body{grid-template-rows:1fr}
@@ -193,15 +192,6 @@ dialog.vw[open] .vw-in{animation:fadeUp .8s var(--ease) both}
 .serv-body li{font-size:13px;border:1px solid var(--line);border-radius:999px;padding:6px 13px;color:var(--bone)}
 @media (max-width:760px){.serv-item>button{grid-template-columns:44px minmax(0,1fr) auto}.serv-body .in{grid-template-columns:1fr;padding-left:60px}}
 
-/* NÚMEROS */
-.numeros{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.numeros div{text-align:center;padding:40px var(--gutter) 36px;border-right:1px solid var(--line)}
-.numeros div:last-child{border-right:0}
-.numeros strong{display:block;font-weight:700;font-size:clamp(44px,5.6vw,84px);letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
-.numeros strong em{font-style:normal;color:var(--sol)}
-.numeros div>span{display:block;margin-top:12px;color:var(--bone-dim);font-weight:300;font-size:15px}
-@media (max-width:760px){.numeros{grid-template-columns:repeat(2,minmax(0,1fr))}.numeros div:nth-child(2){border-right:0}.numeros div:nth-child(-n+2){border-bottom:1px solid var(--line)}}
-
 /* ESTÚDIO */
 .estudio{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:clamp(36px,6vw,96px);align-items:center}
 .estudio>div{min-width:0}
@@ -211,14 +201,8 @@ dialog.vw[open] .vw-in{animation:fadeUp .8s var(--ease) both}
 .estudio figcaption{position:absolute;left:18px;bottom:16px;z-index:1;display:flex;flex-direction:column;gap:1px;text-shadow:0 1px 8px rgba(0,0,0,.4)}
 .estudio figcaption b{font-size:13px;font-weight:700;letter-spacing:0}
 .estudio figcaption span{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(236,235,230,.75)}
-.estudio h2{font-size:clamp(30px,3.6vw,50px);line-height:1.06;margin:16px 0 22px;max-width:18ch}
+.estudio h2{font-size:clamp(30px,3.6vw,50px);line-height:1.06;margin:0 0 22px;max-width:18ch}
 .estudio p{color:var(--bone-dim);font-weight:300;margin:0 0 16px;max-width:46ch}
-.linha-tempo{display:flex;margin-top:30px;border-top:1px solid var(--line)}
-.linha-tempo div{flex:1;padding-top:14px;position:relative}
-.linha-tempo div::before{content:"";position:absolute;top:-5px;left:0;width:9px;height:9px;border-radius:50%;background:var(--bone-dim)}
-.linha-tempo div:last-child::before{background:var(--sol)}
-.linha-tempo b{display:block;font-weight:700;font-size:22px}
-.linha-tempo small{color:var(--bone-dim);font-size:13px;font-weight:300}
 @media (max-width:860px){.estudio{grid-template-columns:1fr}.estudio figure{max-width:360px}}
 
 /* FAQ */
@@ -302,8 +286,7 @@ html.intro body::after{content:"";position:fixed;inset:0;background:#050506;z-in
       <h1><span class="ln"><span class="lt">Dê à sua marca</span></span><span class="ln"><span>a <span class="acento">força</span> do seu negócio.</span></span></h1>
       <div class="hero-base">
         <div>
-          <p class="lead">Desde 2003, unindo estratégia e criação para apresentar o valor da sua empresa. Da identidade visual à campanha.</p>
-          <p class="hero-direct">Atendimento direto com Wesley Sá, do primeiro contato à entrega.</p>
+          <p class="lead">Estratégia e criação para mostrar o valor da sua empresa. Da identidade visual à campanha.</p>
           <div class="ctas">
             <a class="btn btn-sol mag" href="https://wa.me/5584986178461" target="_blank" rel="noopener">
               Conversar sobre meu projeto
@@ -344,7 +327,6 @@ html.intro body::after{content:"";position:fixed;inset:0;background:#050506;z-in
           
           <h2 id="tt" class="split">Marcas construídas com estratégia.</h2>
         </div>
-        <p>Da indústria ao varejo, cada negócio pede uma solução própria. Abra os projetos e conheça as identidades e suas aplicações.</p>
       </div>
       
       <div class="leque rv" id="leque" tabindex="0" aria-roledescription="carrossel" aria-label="Projetos. Use as setas para navegar e Enter para abrir">
@@ -366,18 +348,9 @@ html.intro body::after{content:"";position:fixed;inset:0;background:#050506;z-in
           
           <h2 id="ts" class="split">O que sua empresa precisa para dar o próximo passo.</h2>
         </div>
-        <p>Da criação da marca à divulgação, você pode contratar um projeto específico ou integrar os serviços conforme a necessidade da sua empresa.</p>
+        <p>Contrate um serviço específico ou combine vários em um só projeto.</p>
       </div>
       <div class="serv" id="serv"></div>
-    </div>
-  </section>
-
-  <section aria-label="Números da Dáblio">
-    <div class="numeros">
-      <div class="rv"><strong>2003</strong><span>ano de fundação</span></div>
-      <div class="rv"><strong data-n="500"><span>500</span><em>+</em></strong><span>projetos entregues</span></div>
-      <div class="rv"><strong data-n="12"><span>12</span><em>+</em></strong><span>estados atendidos</span></div>
-      <div class="rv"><strong style="font-size:clamp(32px,4vw,60px)">Direto</strong><span>com quem cria</span></div>
     </div>
   </section>
 
@@ -387,13 +360,7 @@ html.intro body::after{content:"";position:fixed;inset:0;background:#050506;z-in
       <div>
         
         <h2 id="te" class="split">Sua marca, com direção e proximidade.</h2>
-        <p>A Dáblio é uma agência de publicidade de Mossoró, RN, fundada por Wesley Sá. Desde 2003, desenvolve identidades, embalagens e comunicação para empresas de diferentes segmentos.</p>
-        <p>Aqui, você conversa direto com quem cria. Wesley acompanha o projeto do briefing à entrega, conectando o que sua empresa precisa às decisões de criação.</p>
-        <div class="linha-tempo">
-          <div><b>2003</b><small>Fundação</small></div>
-          <div><b>12+</b><small>Estados</small></div>
-          <div><b>Direto</b><small>Com quem cria</small></div>
-        </div>
+        <p>Agência de publicidade de Mossoró, RN, fundada por Wesley Sá em 2003. Você fala direto com quem cria, do briefing à entrega.</p>
       </div>
     </div>
   </section>
@@ -406,20 +373,16 @@ html.intro body::after{content:"";position:fixed;inset:0;background:#050506;z-in
       </div>
       <div>
         <details>
-          <summary>O que a Dáblio oferece?</summary>
-          <p>Criamos identidades visuais, embalagens, sites, conteúdo para redes sociais, campanhas de tráfego pago e vídeos. Você pode contratar um serviço ou combinar entregas em um projeto.</p>
-        </details>
-        <details>
-          <summary>Em quanto tempo entregamos um projeto?</summary>
-          <p>O prazo depende das entregas e da complexidade. Antes de começar, a proposta define o escopo, as etapas e o cronograma. Você acompanha o desenvolvimento e as aprovações.</p>
+          <summary>Quanto tempo leva um projeto?</summary>
+          <p>Depende das entregas. A proposta define escopo, etapas e prazo antes de começar.</p>
         </details>
         <details>
           <summary>Como começa um projeto com a Dáblio?</summary>
-          <p>Começamos com uma conversa sobre seu negócio, seu público e o que precisa mudar. A partir daí, definimos o caminho e as entregas adequadas ao seu momento.</p>
+          <p>Com uma conversa sobre seu negócio e seu público. A partir dela, definimos o caminho e as entregas.</p>
         </details>
         <details>
           <summary>Preciso entender de marketing para começar?</summary>
-          <p>Não. Você traz o conhecimento sobre sua empresa. Nós orientamos o processo e explicamos as decisões de criação em linguagem simples.</p>
+          <p>Não. Você conhece sua empresa; nós conduzimos o processo e explicamos cada decisão.</p>
         </details>
       </div>
     </div>
@@ -430,7 +393,7 @@ html.intro body::after{content:"";position:fixed;inset:0;background:#050506;z-in
     <div class="wrap" style="position:relative">
       <p class="eyebrow">Próximo passo</p>
       <h2 id="tc" class="split"><span class="lt">Vamos falar sobre</span> sua marca?</h2>
-      <p>Conte o que sua empresa precisa. Vamos entender o momento da marca e indicar como a Dáblio pode ajudar.</p>
+      <p>Conte o que sua empresa precisa e indicamos o melhor caminho.</p>
       <a class="btn btn-ink mag" href="https://wa.me/5584986178461" target="_blank" rel="noopener">
         Conversar sobre meu projeto
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
