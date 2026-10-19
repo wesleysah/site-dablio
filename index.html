@@ -305,7 +305,7 @@ html.intro body::after{content:"";position:fixed;inset:0;background:#050506;z-in
 }
 </style>
 <script>
-(function(){var d=document.documentElement;d.classList.add('js');var r=matchMedia('(prefers-reduced-motion: reduce)').matches,v=false;try{v=localStorage.getItem('dablio-intro')==='1'}catch(e){}if(!r&&!v)d.classList.add('intro');else d.classList.add('ready');})();
+(function(){var d=document.documentElement;d.classList.add('js');var r=matchMedia('(prefers-reduced-motion: reduce)').matches;if(!r)d.classList.add('intro');else d.classList.add('ready');})();
 </script>
 </head>
 <body>
@@ -549,7 +549,7 @@ if(!REDUCE&&window.Lenis){
 }
 
 
-/* Abertura "Sinal": esfera de partículas, nuvem e logo dáblio, sem som. Só na primeira visita. */
+/* Abertura "Sinal": esfera de partículas, nuvem e logo dáblio, sem som. Pula com clique, toque ou tecla. */
 (function(){
   if(!ROOT.classList.contains('intro'))return;
   const svgSrc=document.querySelector('.nav .logo svg');
@@ -565,7 +565,6 @@ if(!REDUCE&&window.Lenis){
   document.body.appendChild(wrap);
   ROOT.classList.remove('intro');
   if(lenis)lenis.stop();
-  try{localStorage.setItem('dablio-intro','1')}catch(e){}
   const dpr=Math.min(devicePixelRatio||1,2);
   cv.width=W*dpr;cv.height=H*dpr;ctx.scale(dpr,dpr);
 
