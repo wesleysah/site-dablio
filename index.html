@@ -128,10 +128,8 @@ h1,h2,h3{font-family:var(--f);font-weight:700;margin:0;text-wrap:balance;letter-
 @keyframes fadeUp{from{opacity:0;transform:translate3d(0,24px,0)}to{opacity:1;transform:none}}
 
 /* FAIXA DE LOGOS */
-.faixa{touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:grab;border-bottom:1px solid var(--line);overflow:hidden;padding-block:34px;position:relative}
-.faixa::before,.faixa::after{content:"";position:absolute;top:0;bottom:0;width:12%;z-index:2;pointer-events:none}
-.faixa::before{left:0;background:linear-gradient(90deg,var(--ink),rgba(13,13,15,0))}
-.faixa::after{right:0;background:linear-gradient(270deg,var(--ink),rgba(13,13,15,0))}
+.faixa{border-bottom:1px solid var(--line);padding-block:34px}
+.faixa-janela{overflow:hidden;touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:grab;-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}
 .faixa-trilho{display:flex;align-items:center;gap:clamp(48px,6vw,88px);width:max-content;will-change:transform}
 .no-js .faixa-trilho{animation:correr 60s linear infinite}
 .faixa img{height:var(--h,36px);width:auto;max-width:none;opacity:1;filter:brightness(0) invert(1);-webkit-user-drag:none;transition:opacity .3s}
@@ -295,13 +293,12 @@ html.intro body::after{content:"";position:fixed;inset:0;background:#050506;z-in
 /* MOTION */
 .rv{transition:transform 1.4s var(--ease),opacity 1.2s var(--ease);transition-delay:var(--d,0s)}
 .js .rv.pre{transform:translate3d(0,48px,0);opacity:0}
-.mw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em;margin-bottom:-.1em}
-.mw>span{display:inline-block;transition:transform 1.2s var(--ease);transition-delay:var(--d,0s)}
-.js .split.pre .mw>span{transform:translate3d(0,110%,0)}
+.mw{display:inline-block;white-space:nowrap}
+.mw .ch{display:inline-block}
 .contato .marca{will-change:transform}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
-  .js .rv.pre,.js .split.pre .mw>span{transform:none;opacity:1}
+  .js .rv.pre{transform:none;opacity:1}
 }
 </style>
 <script>
@@ -349,7 +346,7 @@ html.intro body::after{content:"";position:fixed;inset:0;background:#050506;z-in
   </section>
 
   <div class="faixa" aria-label="Clientes que confiam na Dáblio">
-    <div class="faixa-trilho" id="faixa"></div>
+    <div class="wrap"><div class="faixa-janela"><div class="faixa-trilho" id="faixa"></div></div></div>
   </div>
 
   <section class="manifesto" aria-label="Nossa visão">
@@ -389,7 +386,7 @@ html.intro body::after{content:"";position:fixed;inset:0;background:#050506;z-in
         <div>
           <h2 id="ts" class="split largo">O que sua empresa precisa<br> para dar o próximo passo.</h2>
         </div>
-        <p>Contrate um serviço específico ou combine vários em um só projeto.</p>
+        <p class="rola">Contrate um serviço específico ou combine vários em um só projeto.</p>
       </div>
       <div class="serv" id="serv">
         <div class="serv-item rv open" style="--d:0.00s">
@@ -425,7 +422,7 @@ html.intro body::after{content:"";position:fixed;inset:0;background:#050506;z-in
       <figure class="rv"><img src="img/wesley.webp" alt="Wesley Sá, publicitário da Dáblio, sentado à mesa de trabalho" loading="lazy" width="900" height="1125" id="fotoW"><figcaption><b>Wesley Sá</b><span>Publicitário</span></figcaption></figure>
       <div>
         <h2 id="te" class="split">Quem está por trás da Dáblio.</h2>
-        <p>Desde 2003, Wesley Sá cria marcas que traduzem a essência e o valor de cada negócio. Publicitário à frente da Dáblio, em Mossoró, RN, já assinou mais de 500 projetos para empresas de 12 estados. Sua experiência está presente em cada etapa, com acompanhamento pessoal do briefing à entrega.</p>
+        <p class="rola">Desde 2003, Wesley Sá cria marcas que traduzem a essência e o valor de cada negócio. Publicitário à frente da Dáblio, em Mossoró, RN, já assinou mais de 500 projetos para empresas de 12 estados. Sua experiência está presente em cada etapa, com acompanhamento pessoal do briefing à entrega.</p>
       </div>
     </div>
   </section>
@@ -456,7 +453,7 @@ html.intro body::after{content:"";position:fixed;inset:0;background:#050506;z-in
     <span class="marca" aria-hidden="true"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="109.75 65.61 375.78 107.88"> <path d="M168.49,103.67c-1.03-.96-2.14-1.83-3.33-2.6q-6.54-4.21-15.22-4.2t-16.28,4.33-12.08,12.15-4.6,18.22,4.6,18.21,12.08,12.15,16.28,4.34,15.68-4.34q2.61-1.68,4.78-3.87l3.43,6.87h12.95v-92.09h-18.29V103.67ZM161.42,147.71q-3.87,2.28-8.81,2.27-4.94,0-8.81-2.27-3.87-2.26-6.14-6.4-2.27-4.14-2.27-9.74,0-5.74,2.27-9.88,2.27-4.14,6.14-6.41,3.87-2.26,8.81-2.27,4.94,0,8.81,2.27,3.87,2.27,6.14,6.41,2.27,4.14,2.27,9.88,0,5.6-2.27,9.74Q165.29,145.45,161.42,147.71Z"/> <path d="M248.2,105.07q-2.17-2.19-4.77-3.87-6.74-4.33-15.68-4.33t-16.28,4.33-12.08,12.15-4.61,18.22,4.61,18.21,12.08,12.15,16.28,4.34q8.94,0,15.68-4.34,2.6-1.68,4.77-3.87l3.44,6.87h12.94v-66.73h-12.94L248.2,105.07ZM239.23,147.71q-3.88,2.28-8.81,2.27-4.94,0-8.81-2.27-3.87-2.26-6.14-6.4-2.27-4.14-2.27-9.74,0-5.74,2.27-9.88,2.27-4.14,6.14-6.41,3.87-2.26,8.81-2.27,4.93,0,8.81,2.27,3.87,2.27,6.14,6.41,2.26,4.14,2.26,9.88,0,5.6-2.26,9.74Q243.1,145.45,239.23,147.71Z"/> <path d="M327.58,101.2q-7.48-4.33-16.42-4.33-8.27,0-14.68,4c-1.35.84-2.58,1.82-3.74,2.9v-30.93h-18.28v92.09h12.95l3.39-6.8q2.16,2.15,4.75,3.8,6.8,4.34,15.61,4.34t16.42-4.34,12.08-12.15,4.6-18.21-4.6-18.22T327.58,101.2ZM323.57,141.31q-2.27,4.14-6.14,6.4-3.87,2.28-8.8,2.27-4.94,0-8.81-2.27-3.88-2.26-6.14-6.4-2.27-4.14-2.27-9.74,0-5.74,2.27-9.88,2.27-4.14,6.14-6.41,3.87-2.26,8.81-2.27,4.93,0,8.8,2.27,3.87,2.27,6.14,6.41,2.27,4.14,2.27,9.88Q325.84,137.17,323.57,141.31Z"/> <rect x="352.27" y="72.84" width="18.28" height="92.09"/> <rect x="380.34" y="72.84" width="18.28" height="17.62"/> <polygon points="212.05 90.46 247.31 90.46 247.31 72.84 212.05 79.83 212.05 90.46"/> <rect x="380.34" y="98.2" width="18.28" height="66.73"/> <path d="M473.63,113.35q-4.67-7.81-12.81-12.15t-18.42-4.33-18.35,4.33-12.75,12.15-4.67,18.22,4.67,18.21,12.75,12.15,18.35,4.34,18.42-4.34,12.81-12.15,4.67-18.21T473.63,113.35ZM457.61,141.31q-2.27,4.14-6.2,6.4-3.94,2.28-9.01,2.27-4.94,0-8.88-2.27-3.93-2.26-6.2-6.4-2.27-4.14-2.27-9.74,0-5.74,2.27-9.88,2.27-4.14,6.2-6.41,3.94-2.26,8.88-2.27,5.07,0,9.01,2.27,3.93,2.27,6.2,6.41,2.27,4.14,2.27,9.88Q459.88,137.17,457.61,141.31Z"/> </svg></span>
     <div class="wrap" style="position:relative">
       <h2 id="tc" class="split"><span class="lt">Vamos falar sobre</span> sua marca?</h2>
-      <p>Conte o que sua empresa precisa e indicamos o melhor caminho.</p>
+      <p class="rola">Conte o que sua empresa precisa e indicamos o melhor caminho.</p>
       <a class="btn btn-ink mag" href="https://wa.me/5584986178461" target="_blank" rel="noopener">
         Conversar sobre meu projeto
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -809,9 +806,10 @@ document.querySelectorAll('.serv-item').forEach(d=>{
   btn.addEventListener('click',()=>{const o=d.classList.toggle('open');btn.setAttribute('aria-expanded',o)});
 });
 
-/* Títulos: revelação palavra por palavra */
-function split(el){
-  let i=0;
+/* Rolagem: letras dos títulos e palavras dos textos surgem conforme a página desce (e somem ao voltar) */
+function quebrar(el,letras){
+  const itens=[];
+  if(letras)el.setAttribute('aria-label',el.textContent.replace(/\s+/g,' ').trim());
   (function walk(node){
     [...node.childNodes].forEach(n=>{
       if(n.nodeType===3){
@@ -820,15 +818,34 @@ function split(el){
           if(!part)return;
           if(/^\s+$/.test(part)){frag.appendChild(document.createTextNode(part));return}
           const w=document.createElement('span');w.className='mw';
-          const inner=document.createElement('span');inner.textContent=part;inner.style.setProperty('--d',(i++*0.045)+'s');
-          w.appendChild(inner);frag.appendChild(w);
+          if(letras){w.setAttribute('aria-hidden','true');Array.from(part).forEach(c=>{const ch=document.createElement('span');ch.className='ch';ch.textContent=c;w.appendChild(ch);itens.push(ch)})}
+          else{w.textContent=part;itens.push(w)}
+          frag.appendChild(w);
         });
         n.replaceWith(frag);
-      }else if(n.nodeType===1)walk(n);
+      }else if(n.nodeType===1&&n.tagName!=='BR')walk(n);
     });
   })(el);
+  return itens;
 }
-document.querySelectorAll('.split').forEach(split);
+const ROLA=REDUCE?[]:[
+  ...[...document.querySelectorAll('.split')].map(el=>({el,itens:quebrar(el,true),ini:.92,fim:.48,suave:6,min:.08,sobe:.35,ult:-1})),
+  ...[...document.querySelectorAll('.rola')].map(el=>({el,itens:quebrar(el,false),ini:.95,fim:.55,suave:3,min:.18,sobe:0,ult:-1}))
+];
+function rolarTextos(){
+  const vh=innerHeight;
+  ROLA.forEach(o=>{
+    const top=o.el.getBoundingClientRect().top;
+    const p=Math.min(1,Math.max(0,(vh*o.ini-top)/(vh*(o.ini-o.fim))));
+    if(p===o.ult)return;o.ult=p;
+    const t=p*(o.itens.length+o.suave);
+    o.itens.forEach((s,i)=>{
+      const k=Math.min(1,Math.max(0,(t-i)/o.suave));
+      s.style.opacity=k>=1?'':(o.min+(1-o.min)*k).toFixed(3);
+      if(o.sobe)s.style.transform=k>=1?'':`translate3d(0,${((1-k)*o.sobe).toFixed(3)}em,0)`;
+    });
+  });
+}
 
 /* Contagem dos números a partir de zero */
 const easeOut=t=>1-Math.pow(1-t,3);
@@ -848,7 +865,7 @@ function contar(el,delay){
   if(!('IntersectionObserver' in window)){onReady(()=>nums.forEach(n=>contar(n)));return}
   const below=el=>el.getBoundingClientRect().top>innerHeight*0.92;
   const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.remove('pre');io.unobserve(e.target)}})},{rootMargin:'0px 0px -10% 0px'});
-  document.querySelectorAll('.rv,.split').forEach(el=>{if(below(el)){el.classList.add('pre');io.observe(el)}});
+  document.querySelectorAll('.rv').forEach(el=>{if(below(el)){el.classList.add('pre');io.observe(el)}});
   // Observe after the opening: each counter starts when it is actually visible.
   const io2=new IntersectionObserver(es=>{es.forEach(e=>{
     if(!e.isIntersecting)return;
@@ -874,7 +891,7 @@ if(FINE&&!REDUCE){
   });
 }
 
-/* Loop único de animação: nav, faixa, brilho, parallax e manifesto */
+/* Loop único de animação: nav, faixa, brilho, parallax, manifesto e textos */
 const nav=$('#nav'),glow=$('#glow'),foto=$('#fotoW'),marca=document.querySelector('.contato .marca');
 let lastY=scrollY,vel=0,fx=0,mx=innerWidth*.62,my=innerHeight*.15,gx=mx,gy=my,half=0;
 addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY},{passive:true});
@@ -911,6 +928,7 @@ function frame(){
     const prog=Math.min(1,Math.max(0,(vh*.85-r.top)/(r.height+vh*.35)));
     const n=Math.round(prog*fws.length);
     fws.forEach((w,i)=>w.classList.toggle('on',i<n));
+    rolarTextos();
   }
   requestAnimationFrame(frame);
 }
