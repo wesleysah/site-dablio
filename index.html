@@ -121,19 +121,23 @@ h1,h2,h3{font-family:var(--f);font-weight:700;margin:0;text-wrap:balance;letter-
 .sec-head>div{min-width:0}
 .sec-head p{max-width:40ch;color:var(--bone-dim);font-weight:300;margin:0}
 
-/* TRABALHOS */
-.grade{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
-@media (max-width:1080px){.grade{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media (max-width:700px){.grade{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
-.case{position:relative;padding:0;border:0;background:var(--ink-2);border-radius:8px;overflow:hidden;cursor:pointer;aspect-ratio:4/5;text-align:left;color:var(--bone)}
-.case img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
-.js .case.pre{clip-path:inset(100% 0 0 0)}
-.js .case.pre img{transform:scale(1.25)}
-.js .case{transition:clip-path 1.2s var(--ease);transition-delay:var(--d,0s)}
-.case:hover img,.case:focus-visible img{transform:scale(1.05)}
-.case::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(236,235,230,.08);pointer-events:none;transition:box-shadow .4s}
-.case:hover::after{box-shadow:inset 0 0 0 1px rgba(255,178,26,.6)}
-.case[hidden]{display:none!important}
+/* TRABALHOS: leque de projetos */
+.leque{position:relative;touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:grab;overflow-x:hidden;overflow-x:clip;padding-block:24px 8px;margin-inline:calc(var(--gutter)*-1)}
+.leque:focus{outline:none}
+.leque.arrastando{cursor:grabbing}
+.leque-palco{--cw:clamp(230px,27vw,380px);position:relative;width:var(--cw);aspect-ratio:4/5;margin-inline:auto}
+.lq-card{position:absolute;inset:0;padding:0;border:0;border-radius:12px;overflow:hidden;background:var(--ink-2);cursor:inherit;opacity:var(--o,1);z-index:var(--z,1);transform:translate3d(calc(var(--x,0)*1% + var(--dx,0px)),calc(var(--y,0)*1%),0) rotate(calc(var(--r,0)*1deg + var(--dr,0deg))) scale(var(--s,1));transition:transform .9s cubic-bezier(.34,1.45,.5,1),opacity .5s ease;box-shadow:0 30px 70px rgba(0,0,0,.5);will-change:transform}
+.lq-card img{width:100%;height:100%;object-fit:cover;pointer-events:none;-webkit-user-drag:none}
+.lq-card::after{content:"";position:absolute;inset:0;border-radius:inherit;background:rgba(13,13,15,var(--dim,0));box-shadow:inset 0 0 0 1px rgba(236,235,230,.08);pointer-events:none;transition:background .6s ease,box-shadow .4s}
+.lq-card.on:hover::after,.leque:focus-visible .lq-card.on::after{box-shadow:inset 0 0 0 2px var(--sol)}
+.leque.arrastando .lq-card.on{transition:none}
+.leque-info{display:flex;align-items:center;justify-content:center;gap:clamp(16px,3vw,40px);margin-top:36px}
+.leque-txt{text-align:center;width:min(100%,340px);min-width:0}
+.leque-txt .cnt{display:block;font-size:13px;color:var(--mute);font-variant-numeric:tabular-nums;letter-spacing:.08em}
+.leque-txt b{display:block;font-size:clamp(22px,2.4vw,32px);letter-spacing:-.02em;line-height:1.1;margin:8px 0 6px}
+.leque-txt .seg{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--bone-dim)}
+.leque-dica{text-align:center;margin:18px 0 0;font-size:13px;color:var(--mute);font-weight:300}
+@media (max-width:700px){.leque-palco{--cw:62vw}.leque-info{gap:12px}}
 
 /* VISUALIZADOR */
 dialog.vw{border:0;padding:0;background:transparent;color:var(--bone);max-width:none;max-height:none;width:100%;height:100%;margin:0}
@@ -272,7 +276,7 @@ html.intro body::after{content:"";position:fixed;inset:0;background:#050506;z-in
 .contato .marca{will-change:transform}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
-  .js .rv.pre,.js .case.pre,.js .case.pre img,.js .split.pre .mw>span{transform:none;opacity:1;clip-path:none}
+  .js .rv.pre,.js .split.pre .mw>span{transform:none;opacity:1}
 }
 </style>
 <script>
@@ -345,7 +349,15 @@ html.intro body::after{content:"";position:fixed;inset:0;background:#050506;z-in
         <p>Da indústria ao varejo, cada negócio pede uma solução própria. Abra os projetos e conheça as identidades e suas aplicações.</p>
       </div>
       
-      <div class="grade" id="grade"></div>
+      <div class="leque rv" id="leque" tabindex="0" aria-roledescription="carrossel" aria-label="Projetos. Use as setas para navegar e Enter para abrir">
+        <div class="leque-palco" id="lequePalco"></div>
+      </div>
+      <div class="leque-info rv">
+        <button class="icbtn" type="button" id="lqPrev" aria-label="Projeto anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <div class="leque-txt" aria-live="polite"><span class="cnt" id="lqCnt">01 / 20</span><b id="lqNome"></b><span class="seg" id="lqSeg"></span></div>
+        <button class="icbtn" type="button" id="lqNext" aria-label="Próximo projeto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+      <p class="leque-dica">Arraste para os lados e toque no projeto para ver as 10 páginas.</p>
     </div>
   </section>
 
@@ -658,20 +670,63 @@ const trilho=$('#faixa');
   trilho.innerHTML=html+html.replace(/alt="[^"]*"/g,'alt="" aria-hidden="true"');
 })();
 
-/* Grade + filtros */
-const grade=$('#grade');
-CASES.forEach((c,i)=>{
+/* Leque de projetos: arrastar troca o projeto, clicar no da frente abre o visualizador */
+const leque=$('#leque'),palco=$('#lequePalco');
+let ativo=0;
+const LQ={0:[0,0,0,1,1,5,0],1:[58,4,8,.88,1,4,.45],2:[104,10,14,.76,1,3,.65]};
+const cards=CASES.map((c,i)=>{
   const b=document.createElement('button');
-  b.className='case';b.type='button';b.dataset.g=c.g;b.dataset.i=i;
+  b.className='lq-card';b.type='button';b.tabIndex=-1;
   b.setAttribute('aria-label',`${c.nome}, ${c.seg}. Ver as ${PAGES} páginas do projeto`);
-  b.innerHTML=`<img src="${pg(c.id,1)}" alt="" loading="lazy" width="1080" height="1350">`;
-  b.addEventListener('click',()=>abrir(i,1));
-  grade.appendChild(b);
+  b.innerHTML=`<img src="${pg(c.id,1)}" alt="" loading="lazy" draggable="false" width="1080" height="1350">`;
+  b.addEventListener('click',()=>{if(lqMoveu)return;if(i===ativo)abrir(i,1);else{ativo=i;posLeque()}});
+  palco.appendChild(b);return b;
 });
+function posLeque(){
+  const n=CASES.length,k=innerWidth<700?.6:1;
+  cards.forEach((b,i)=>{
+    let d=i-ativo;if(d>n/2)d-=n;if(d<-n/2)d+=n;
+    const a=Math.abs(d),dir=d<0?-1:1;
+    const [x,y,r,s,o,z,dim]=LQ[a]||[130,14,18,.6,0,2,.65];
+    const st=b.style;
+    st.setProperty('--x',x*dir*k);st.setProperty('--y',y);st.setProperty('--r',r*dir);st.setProperty('--s',s);
+    st.setProperty('--o',o);st.setProperty('--z',z);st.setProperty('--dim',dim);
+    b.classList.toggle('on',d===0);
+    if(a>2)b.setAttribute('aria-hidden','true');else b.removeAttribute('aria-hidden');
+  });
+  const c=CASES[ativo];
+  $('#lqCnt').textContent=`${String(ativo+1).padStart(2,'0')} / ${String(n).padStart(2,'0')}`;
+  $('#lqNome').textContent=c.nome;$('#lqSeg').textContent=c.seg;
+}
+function girar(d){ativo=(ativo+d+CASES.length)%CASES.length;posLeque()}
+$('#lqPrev').onclick=()=>girar(-1);
+$('#lqNext').onclick=()=>girar(1);
+leque.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'){e.preventDefault();girar(1)}
+  else if(e.key==='ArrowLeft'){e.preventDefault();girar(-1)}
+  else if(e.key==='Enter'||e.key===' '){e.preventDefault();abrir(ativo,1)}
+});
+let lqX=null,lqDx=0,lqPid=null,lqMoveu=false;
+leque.addEventListener('pointerdown',e=>{if(e.pointerType==='mouse'&&e.button!==0)return;lqX=e.clientX;lqDx=0;lqPid=e.pointerId;lqMoveu=false});
+leque.addEventListener('pointermove',e=>{
+  if(e.pointerId!==lqPid||lqX===null)return;
+  lqDx=e.clientX-lqX;
+  if(!lqMoveu&&Math.abs(lqDx)>6){lqMoveu=true;leque.setPointerCapture(lqPid);leque.classList.add('arrastando')}
+  if(lqMoveu){const on=cards[ativo].style;on.setProperty('--dx',lqDx+'px');on.setProperty('--dr',lqDx/40+'deg')}
+});
+function lqSoltar(e){
+  if(e.pointerId!==lqPid)return;
+  const on=cards[ativo].style;on.removeProperty('--dx');on.removeProperty('--dr');
+  leque.classList.remove('arrastando');
+  if(lqMoveu&&e.type==='pointerup'&&Math.abs(lqDx)>palco.offsetWidth*.15)girar(lqDx<0?1:-1);
+  lqX=null;lqPid=null;setTimeout(()=>{lqMoveu=false});
+}
+['pointerup','pointercancel'].forEach(ev=>leque.addEventListener(ev,lqSoltar));
+addEventListener('resize',posLeque);
+posLeque();
 /* Visualizador de páginas */
 const vw=$('#vw'),img=$('#vwImg'),thumbs=$('#vwThumbs');
 let cur=0,page=1;
-function visiveis(){return [...grade.querySelectorAll('.case:not([hidden])')].map(e=>+e.dataset.i)}
 function preload(n){if(n>=1&&n<=PAGES){const im=new Image();im.src=pg(CASES[cur].id,n)}}
 function montarThumbs(){
   const c=CASES[cur];
@@ -706,13 +761,13 @@ function abrir(i,p){
   if(!vw.open){if(lenis)lenis.stop();if(vw.showModal)vw.showModal();else vw.setAttribute('open','')}
 }
 function ir(p){if(p<1||p>PAGES||p===page)return;const d=p>page?1:-1;page=p;render(d)}
-function projeto(d){const v=visiveis();const k=v.indexOf(cur);abrir(v[(k+d+v.length)%v.length],1)}
+function projeto(d){abrir((cur+d+CASES.length)%CASES.length,1)}
 $('#vwPrev').onclick=()=>ir(page-1);
 $('#vwNext').onclick=()=>ir(page+1);
 $('#vwProjPrev').onclick=()=>projeto(-1);
 $('#vwProjNext').onclick=()=>projeto(1);
 $('#vwClose').onclick=()=>vw.close();
-vw.addEventListener('close',()=>{if(lenis)lenis.start()});
+vw.addEventListener('close',()=>{if(lenis)lenis.start();ativo=cur;posLeque()});
 img.addEventListener('click',e=>{const r=img.getBoundingClientRect();ir(e.clientX<r.left+r.width/2?page-1:page+1)});
 vw.addEventListener('click',e=>{if(e.target===vw)vw.close()});
 vw.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();ir(page+1)}if(e.key==='ArrowLeft'){e.preventDefault();ir(page-1)}});
@@ -779,7 +834,6 @@ function contar(el,delay){
   const below=el=>el.getBoundingClientRect().top>innerHeight*0.92;
   const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.remove('pre');io.unobserve(e.target)}})},{rootMargin:'0px 0px -10% 0px'});
   document.querySelectorAll('.rv,.split').forEach(el=>{if(below(el)){el.classList.add('pre');io.observe(el)}});
-  grade.querySelectorAll('.case').forEach((el,i)=>{el.style.setProperty('--d',(i%4)*0.08+'s');if(below(el)){el.classList.add('pre');io.observe(el)}});
   // Observe after the opening: each counter starts when it is actually visible.
   const io2=new IntersectionObserver(es=>{es.forEach(e=>{
     if(!e.isIntersecting)return;
