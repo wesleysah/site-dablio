@@ -97,7 +97,7 @@ h1,h2,h3{font-family:var(--f);font-weight:700;margin:0;text-wrap:balance;letter-
 .hero-side div>span{display:block;margin-top:8px;font-size:14px;color:var(--bone-dim);font-weight:300;white-space:nowrap}
 @media (max-width:900px){.hero-base{grid-template-columns:1fr;gap:36px}.hero-side{justify-content:space-between}}
 @media (max-width:700px){.hero h1{font-size:clamp(46px,13.6vw,100px)}}
-@media (max-width:420px){.hero-side{gap:18px}.hero-side div>span{font-size:12px;white-space:normal}}
+@media (max-width:420px){.hero-side{gap:18px}.hero-side strong{font-size:26px}.hero-side div>span{font-size:12px;white-space:normal}}
 .js .hero .ln>span{animation:lineUp 1.3s var(--ease) both;animation-play-state:paused}
 .js .hero .ln:nth-child(2)>span{animation-delay:.12s}
 .js .hero .eyebrow,.js .hero-base{animation:fadeUp 1.2s var(--ease) both;animation-play-state:paused}
@@ -106,22 +106,12 @@ h1,h2,h3{font-family:var(--f);font-weight:700;margin:0;text-wrap:balance;letter-
 @keyframes lineUp{from{transform:translate3d(0,108%,0) rotate(2deg)}to{transform:none}}
 @keyframes fadeUp{from{opacity:0;transform:translate3d(0,24px,0)}to{opacity:1;transform:none}}
 
-/* FAIXA DE LOGOS */
-.faixa{border-bottom:1px solid var(--line);padding-block:34px}
-.faixa-janela{overflow:hidden;touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:grab;-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}
-.faixa-trilho{display:flex;align-items:center;gap:clamp(48px,6vw,88px);width:max-content;will-change:transform}
-.faixa img{height:var(--h,36px);width:auto;max-width:none;filter:brightness(0) invert(1);-webkit-user-drag:none}
-
 /* MANIFESTO */
 .manifesto{background:var(--bone);color:var(--ink);padding-block:clamp(80px,12vw,160px)}
 .manifesto .eyebrow{color:#6b6a64}
 .manifesto p.grande{font-weight:300;font-size:clamp(28px,3.8vw,56px);line-height:1.15;letter-spacing:-.02em;margin:0;max-width:24ch}
 .manifesto .w{color:#9d9c96;transition:color .5s ease}
 .manifesto .w.on{color:var(--ink)}
-.pilares{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;margin-top:72px;border-top:1px solid #cfcdc6;padding-top:32px}
-.pilares h2{font-size:19px;margin-bottom:10px;letter-spacing:-.01em}
-.pilares p{margin:0;color:#4a4944;font-size:16px;font-weight:300;max-width:36ch}
-@media (max-width:760px){.pilares{grid-template-columns:1fr}}
 
 /* SECTION HEAD */
 .sec{padding-block:clamp(80px,10vw,140px)}
@@ -149,7 +139,7 @@ h1,h2,h3{font-family:var(--f);font-weight:700;margin:0;text-wrap:balance;letter-
 @media (max-width:700px){.leque-palco{--cw:62vw}.leque-info{gap:12px}}
 
 /* ESCOPO */
-.escopo{border-top:1px solid var(--line)}
+#trabalhos{border-top:1px solid var(--line)}
 .escopo .sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,46ch);gap:24px 64px;align-items:end}
 .escopo .sec-head p{margin:0}
 .entregas{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,5vw,80px)}
@@ -310,70 +300,37 @@ html.intro body::after{content:"";position:fixed;inset:0;background:#050506;z-in
   <section class="hero" aria-labelledby="t1">
     <div class="hero-glow" id="glow" aria-hidden="true"></div>
     <div class="wrap">
-      <div class="eyebrow">Proposta · Identidade visual</div>
-      <h1 id="t1"><span class="ln"><span class="lt">Uma marca à altura</span></span><span class="ln"><span>do seu <span class="acento">negócio.</span></span></span></h1>
+      <div class="eyebrow">Proposta comercial · Outubro de 2026</div>
+      <h1 id="t1"><span class="ln"><span class="lt">Proposta de</span></span><span class="ln"><span>identidade <span class="acento">visual.</span></span></span></h1>
       <div class="hero-base">
         <div>
-          <p class="lead">Estratégia e criação para que sua empresa seja reconhecida pelo valor que tem. Do conceito ao manual de marca.</p>
+          <p class="lead">Para sua empresa ter uma marca à altura do negócio. Aqui estão o escopo, o processo, o prazo e o investimento.</p>
           <div class="ctas">
-            <a class="btn btn-sol mag" href="#projeto">
+            <a class="btn btn-sol mag" href="#objetivo">
               Ver a proposta
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
             </a>
           </div>
         </div>
-        <div class="hero-side" aria-label="Dáblio em números">
-          <div><strong>2003</strong><span>ano de fundação</span></div>
-          <div><strong data-n="500"><span>500</span><em>+</em></strong><span>projetos entregues</span></div>
-          <div><strong data-n="12"><span>12</span><em>+</em></strong><span>estados atendidos</span></div>
-        </div>
       </div>
     </div>
   </section>
 
-  <div class="faixa" aria-label="Empresas que confiam na Dáblio">
-    <div class="wrap"><div class="faixa-janela"><div class="faixa-trilho" id="faixa"></div></div></div>
-  </div>
-
-  <section class="manifesto" id="projeto" aria-labelledby="t2">
+  <section class="manifesto" id="objetivo" aria-labelledby="t2">
     <div class="wrap">
-      <div class="eyebrow" id="t2">O projeto</div>
-      <p class="grande" id="frase">O cliente forma uma opinião sobre sua empresa antes da primeira conversa. Sua marca precisa falar por você nesse momento.</p>
-      <div class="pilares">
-        <div class="rv"><h2>Estratégia</h2><p>Entendemos seu negócio, seu público e sua concorrência antes de desenhar qualquer traço.</p></div>
-        <div class="rv" style="--d:.08s"><h2>Identidade</h2><p>Transformamos essa direção em logotipo, cores, tipografia e elementos que tornam a marca reconhecível.</p></div>
-        <div class="rv" style="--d:.16s"><h2>Aplicação</h2><p>Entregamos a marca pronta para o digital e o impresso, com um manual para manter a consistência.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec" id="trabalhos" aria-labelledby="t3">
-    <div class="wrap">
-      <div class="sec-head centro">
-        <div class="eyebrow">Portfólio</div>
-        <h2 id="t3" class="split">Marcas que criamos.</h2>
-      </div>
-      <div class="leque rv" id="leque" tabindex="0" aria-roledescription="carrossel" aria-label="Projetos. Use as setas para navegar e Enter para abrir">
-        <div class="leque-palco" id="lequePalco"></div>
-      </div>
-      <div class="leque-info rv">
-        <button class="icbtn" type="button" id="lqPrev" aria-label="Projeto anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
-        <div class="leque-txt" aria-live="polite"><b id="lqNome"></b><span class="seg" id="lqSeg"></span></div>
-        <button class="icbtn" type="button" id="lqNext" aria-label="Próximo projeto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
-      </div>
-      <p class="leque-dica">Arraste para o lado e toque no projeto da frente para ver completo.</p>
+      <div class="eyebrow" id="t2">01 · Objetivo</div>
+      <p class="grande" id="frase">Criar uma marca que mostre o valor do seu negócio e deixe sua empresa fácil de reconhecer, em cada lugar onde o cliente a encontrar.</p>
     </div>
   </section>
 
   <section class="sec escopo" id="escopo" aria-labelledby="t4">
     <div class="wrap">
       <div class="sec-head">
-        <div><div class="eyebrow">Escopo</div><h2 id="t4" class="split">O que você recebe.</h2></div>
-        <p class="rola">Uma identidade completa, pronta para usar desde o primeiro dia.</p>
+        <div><div class="eyebrow">02 · Escopo</div><h2 id="t4" class="split">O que está incluído.</h2></div>
       </div>
       <div class="entregas">
         <div class="rv">
-          <h3>Identidade visual <span>5 itens</span></h3>
+          <h3>Identidade visual</h3>
           <ul>
             <li>Logotipo principal</li>
             <li>Versões horizontal, vertical e símbolo</li>
@@ -383,7 +340,7 @@ html.intro body::after{content:"";position:fixed;inset:0;background:#050506;z-in
           </ul>
         </div>
         <div class="rv" style="--d:.08s">
-          <h3>Aplicações <span>5 itens</span></h3>
+          <h3>Aplicações</h3>
           <ul>
             <li>Cartão de visita e papel timbrado</li>
             <li>Assinatura de e-mail</li>
@@ -394,8 +351,8 @@ html.intro body::after{content:"";position:fixed;inset:0;background:#050506;z-in
         </div>
       </div>
       <div class="extras">
-        <div class="rv"><p><b>Estratégia incluída</b>Briefing, análise da concorrência, conceito e direção criativa fazem parte do projeto.</p></div>
-        <div class="rv" style="--d:.08s"><p><b>Arquivos finais</b>Prontos para uso digital e impresso.</p><div class="formatos" aria-label="Formatos entregues"><span>AI</span><span>PDF</span><span>PNG</span><span>SVG</span></div></div>
+        <div class="rv"><p><b>Estratégia incluída</b>Briefing, análise da concorrência, conceito e direção criativa.</p></div>
+        <div class="rv" style="--d:.08s"><p><b>Arquivos finais</b>Para uso digital e impresso.</p><div class="formatos" aria-label="Formatos entregues"><span>AI</span><span>PDF</span><span>PNG</span><span>SVG</span></div></div>
       </div>
     </div>
   </section>
@@ -403,7 +360,7 @@ html.intro body::after{content:"";position:fixed;inset:0;background:#050506;z-in
   <section class="sec processo" id="processo" aria-labelledby="t5">
     <div class="wrap">
       <div class="processo-top">
-        <div><div class="eyebrow">Processo e prazo</div><h2 id="t5" class="split">Do briefing à marca pronta.</h2></div>
+        <div><div class="eyebrow">03 · Processo e prazo</div><h2 id="t5" class="split">Do briefing à marca pronta.</h2></div>
         <div class="prazo rv"><strong data-n="10"><span>10</span></strong><em>dias de<br>desenvolvimento</em></div>
       </div>
       <ol class="passos">
@@ -415,13 +372,42 @@ html.intro body::after{content:"";position:fixed;inset:0;background:#050506;z-in
     </div>
   </section>
 
-  <section class="sec" id="investimento" aria-labelledby="t6">
+  <section class="sec" id="trabalhos" aria-labelledby="t3">
+    <div class="wrap">
+      <div class="sec-head centro">
+        <div class="eyebrow">04 · Portfólio</div>
+        <h2 id="t3" class="split">Projetos que assinamos.</h2>
+      </div>
+      <div class="leque rv" id="leque" tabindex="0" aria-roledescription="carrossel" aria-label="Projetos. Use as setas para navegar e Enter para abrir">
+        <div class="leque-palco" id="lequePalco"></div>
+      </div>
+      <div class="leque-info rv">
+        <button class="icbtn" type="button" id="lqPrev" aria-label="Projeto anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <div class="leque-txt" aria-live="polite"><b id="lqNome"></b><span class="seg" id="lqSeg"></span></div>
+        <button class="icbtn" type="button" id="lqNext" aria-label="Próximo projeto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+      <p class="leque-dica">Arraste para navegar. Toque no projeto da frente para ver completo.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="estudio" aria-labelledby="t7" style="border-top:1px solid var(--line)">
+    <div class="wrap estudio">
+      <figure class="rv"><img src="img/wesley.webp" alt="Wesley Sá, publicitário da Dáblio, sentado à mesa de trabalho" loading="lazy" width="900" height="1125" id="fotoW"><figcaption><b>Wesley Sá</b><span>Publicitário</span></figcaption></figure>
+      <div>
+        <div class="eyebrow">05 · Quem conduz</div>
+        <h2 id="t7" class="split">Quem está por trás da Dáblio.</h2>
+        <p class="rola">Desde 2003, Wesley Sá cria marcas que traduzem a essência e o valor de cada negócio. Publicitário à frente da Dáblio, em Mossoró, RN, já assinou mais de 500 projetos para empresas de 12 estados. Sua experiência está presente em cada etapa, com acompanhamento pessoal do briefing à entrega.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="investimento" aria-labelledby="t6" style="border-top:1px solid var(--line)">
     <div class="wrap invest-grid">
       <div>
-        <div class="eyebrow">Investimento</div>
+        <div class="eyebrow">06 · Investimento</div>
         <h2 id="t6" class="split"><span class="lt">Identidade visual</span> completa.</h2>
         <p class="preco rv" aria-label="R$ 2.000,00"><span class="moeda" aria-hidden="true">R$</span><span class="valor" aria-hidden="true">2.000</span><span class="cent" aria-hidden="true">,00</span></p>
-        <p class="invest-nota rola">Inclui estratégia, criação, aplicações, manual de identidade visual e arquivos finais.</p>
+        <p class="invest-nota rola">Valor total para todo o escopo desta proposta.</p>
       </div>
       <div class="parcelas rv">
         <div class="parcela"><div><small>50% · Para começar</small><span>Na aprovação da proposta</span></div><strong>R$ 1.000</strong></div>
@@ -431,26 +417,15 @@ html.intro body::after{content:"";position:fixed;inset:0;background:#050506;z-in
     </div>
   </section>
 
-  <section class="sec" id="estudio" aria-labelledby="t7" style="padding-top:0">
-    <div class="wrap estudio">
-      <figure class="rv"><img src="img/wesley.webp" alt="Wesley Sá, publicitário da Dáblio, sentado à mesa de trabalho" loading="lazy" width="900" height="1125" id="fotoW"><figcaption><b>Wesley Sá</b><span>Publicitário</span></figcaption></figure>
-      <div>
-        <div class="eyebrow">Quem conduz</div>
-        <h2 id="t7" class="split">Quem cuida do seu projeto.</h2>
-        <p class="rola">Sou Wesley Sá, publicitário à frente da Dáblio desde 2003, em Mossoró, RN. São mais de 500 projetos para empresas de 12 estados. Acompanho o seu pessoalmente, em cada etapa.</p>
-      </div>
-    </div>
-  </section>
-
   <section class="contato" id="contato" aria-labelledby="t8">
     <span class="marca" aria-hidden="true"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="109.75 65.61 375.78 107.88"> <path d="M168.49,103.67c-1.03-.96-2.14-1.83-3.33-2.6q-6.54-4.21-15.22-4.2t-16.28,4.33-12.08,12.15-4.6,18.22,4.6,18.21,12.08,12.15,16.28,4.34,15.68-4.34q2.61-1.68,4.78-3.87l3.43,6.87h12.95v-92.09h-18.29V103.67ZM161.42,147.71q-3.87,2.28-8.81,2.27-4.94,0-8.81-2.27-3.87-2.26-6.14-6.4-2.27-4.14-2.27-9.74,0-5.74,2.27-9.88,2.27-4.14,6.14-6.41,3.87-2.26,8.81-2.27,4.94,0,8.81,2.27,3.87,2.27,6.14,6.41,2.27,4.14,2.27,9.88,0,5.6-2.27,9.74Q165.29,145.45,161.42,147.71Z"/> <path d="M248.2,105.07q-2.17-2.19-4.77-3.87-6.74-4.33-15.68-4.33t-16.28,4.33-12.08,12.15-4.61,18.22,4.61,18.21,12.08,12.15,16.28,4.34q8.94,0,15.68-4.34,2.6-1.68,4.77-3.87l3.44,6.87h12.94v-66.73h-12.94L248.2,105.07ZM239.23,147.71q-3.88,2.28-8.81,2.27-4.94,0-8.81-2.27-3.87-2.26-6.14-6.4-2.27-4.14-2.27-9.74,0-5.74,2.27-9.88,2.27-4.14,6.14-6.41,3.87-2.26,8.81-2.27,4.93,0,8.81,2.27,3.87,2.27,6.14,6.41,2.26,4.14,2.26,9.88,0,5.6-2.26,9.74Q243.1,145.45,239.23,147.71Z"/> <path d="M327.58,101.2q-7.48-4.33-16.42-4.33-8.27,0-14.68,4c-1.35.84-2.58,1.82-3.74,2.9v-30.93h-18.28v92.09h12.95l3.39-6.8q2.16,2.15,4.75,3.8,6.8,4.34,15.61,4.34t16.42-4.34,12.08-12.15,4.6-18.21-4.6-18.22T327.58,101.2ZM323.57,141.31q-2.27,4.14-6.14,6.4-3.87,2.28-8.8,2.27-4.94,0-8.81-2.27-3.88-2.26-6.14-6.4-2.27-4.14-2.27-9.74,0-5.74,2.27-9.88,2.27-4.14,6.14-6.41,3.87-2.26,8.81-2.27,4.93,0,8.8,2.27,3.87,2.27,6.14,6.41,2.27,4.14,2.27,9.88Q325.84,137.17,323.57,141.31Z"/> <rect x="352.27" y="72.84" width="18.28" height="92.09"/> <rect x="380.34" y="72.84" width="18.28" height="17.62"/> <polygon points="212.05 90.46 247.31 90.46 247.31 72.84 212.05 79.83 212.05 90.46"/> <rect x="380.34" y="98.2" width="18.28" height="66.73"/> <path d="M473.63,113.35q-4.67-7.81-12.81-12.15t-18.42-4.33-18.35,4.33-12.75,12.15-4.67,18.22,4.67,18.21,12.75,12.15,18.35,4.34,18.42-4.34,12.81-12.15,4.67-18.21T473.63,113.35ZM457.61,141.31q-2.27,4.14-6.2,6.4-3.94,2.28-9.01,2.27-4.94,0-8.88-2.27-3.93-2.26-6.2-6.4-2.27-4.14-2.27-9.74,0-5.74,2.27-9.88,2.27-4.14,6.2-6.41,3.94-2.26,8.88-2.27,5.07,0,9.01,2.27,3.93,2.27,6.2,6.41,2.27,4.14,2.27,9.88Q459.88,137.17,457.61,141.31Z"/> </svg></span>
     <div class="wrap" style="position:relative">
-      <div class="eyebrow">Próximo passo</div>
-      <h2 id="t8" class="split"><span class="lt">Vamos construir</span> sua marca?</h2>
-      <p class="rola">Aprove pelo WhatsApp e já marcamos a conversa de briefing. Se ficou alguma dúvida, é só me chamar.</p>
+      <div class="eyebrow">07 · Próximo passo</div>
+      <h2 id="t8" class="split"><span class="lt">Vamos</span> começar?</h2>
+      <p class="rola">Para aprovar, é só responder pelo WhatsApp. Se ficou alguma dúvida, me chame pelo mesmo caminho.</p>
       <div class="ctas">
         <a class="btn btn-ink mag" href="https://wa.me/5584986178461?text=Ol%C3%A1%2C%20Wesley%21%20Vi%20a%20proposta%20de%20identidade%20visual%20da%20D%C3%A1blio%20e%20quero%20aprovar%20para%20come%C3%A7armos." target="_blank" rel="noopener">
-          Aprovar e começar
+          Aprovar proposta
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
         <a class="btn btn-ghost" href="https://wa.me/5584986178461?text=Ol%C3%A1%2C%20Wesley%21%20Vi%20a%20proposta%20de%20identidade%20visual%20da%20D%C3%A1blio%20e%20tenho%20uma%20d%C3%BAvida." target="_blank" rel="noopener">Tirar uma dúvida</a>
@@ -672,15 +647,6 @@ try{
 /* Garante a página visível mesmo se a abertura falhar */
 setTimeout(()=>{if(!ROOT.classList.contains('ready')){ROOT.classList.remove('intro');ROOT.classList.add('ready');document.querySelectorAll('.intro-wrap').forEach(el=>el.remove());dispatchEvent(new Event('dablio:ready'));if(lenis)lenis.start()}},6000);
 
-/* Faixa de logos */
-const trilho=$('#faixa');
-(function(){
-  const L=[['cimsal',1.27],['palac',1.72],['mahindra',4.58],['xcmg',3.58],['pw-bajaj',4.18],['beira-rio',2.95],['cremolat',2.64],['gelice',1.77],['betel',3.51],['ceanor',2.92],['casa-sorveteiro',1.94],['casa-nova',1.69],['patria-amada',1.51],['tcm',2.4],['woopo',1.78],['95',1.09]];
-  const NOMES={cimsal:'Cimsal',palac:'Palac',mahindra:'Mahindra',xcmg:'XCMG','pw-bajaj':'PW Bajaj','beira-rio':'Beira Rio',cremolat:'Cremolat',gelice:'Gelice',betel:'Betel',ceanor:'Ceanor','casa-sorveteiro':'Casa do Sorveteiro','casa-nova':'Casa Nova','patria-amada':'Pátria Amada',tcm:'TCM',woopo:'Woopo','95':'95'};
-  const html=L.map(([f,r])=>{const h=Math.max(26,Math.min(62,40*Math.sqrt(2.4/r)))*.62;return `<img draggable="false" src="logos/${f}.svg" alt="${NOMES[f]||f}" width="${Math.round(h*r)}" height="${Math.round(h)}" style="--h:${h}px">`}).join('');
-  trilho.innerHTML=html+html.replace(/alt="[^"]*"/g,'alt="" aria-hidden="true"');
-})();
-
 /* Leque de projetos: arrastar troca o projeto, clicar no da frente abre o visualizador */
 const leque=$('#leque'),palco=$('#lequePalco');
 let ativo=0;
@@ -860,19 +826,10 @@ if(FINE&&!REDUCE){
   });
 }
 
-/* Loop único: nav, progresso, faixa, brilho, parallax, manifesto e textos */
+/* Loop único: nav, progresso, brilho, parallax, manifesto e textos */
 const nav=$('#nav'),barra=$('#progresso'),glow=$('#glow'),foto=$('#fotoW'),marca=document.querySelector('.contato .marca');
-let lastY=scrollY,vel=0,fx=0,mx=innerWidth*.62,my=innerHeight*.15,gx=mx,gy=my,half=0;
+let lastY=scrollY,vel=0,mx=innerWidth*.62,my=innerHeight*.15,gx=mx,gy=my;
 addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY},{passive:true});
-let logoDragging=false,logoPointer=null,logoX=0;
-function paintLogos(){if(half)fx=-(((-fx%half)+half)%half);trilho.style.transform=`translate3d(${fx}px,0,0)`}
-const logoStrip=trilho.parentElement;
-logoStrip.addEventListener('pointerdown',e=>{if(e.pointerType==='mouse'&&e.button!==0)return;logoDragging=true;logoPointer=e.pointerId;logoX=e.clientX;logoStrip.setPointerCapture(e.pointerId);logoStrip.style.cursor='grabbing'});
-logoStrip.addEventListener('pointermove',e=>{if(!logoDragging||e.pointerId!==logoPointer)return;fx+=e.clientX-logoX;logoX=e.clientX;paintLogos()});
-function stopLogoDrag(e){if(e.pointerId!==logoPointer)return;logoDragging=false;logoPointer=null;logoStrip.style.cursor='grab'}
-['pointerup','pointercancel','lostpointercapture'].forEach(ev=>logoStrip.addEventListener(ev,stopLogoDrag));
-function measure(){half=(trilho.scrollWidth+(parseFloat(getComputedStyle(trilho).gap)||0))/2}
-addEventListener('resize',measure);addEventListener('load',measure);measure();
 function frame(){
   const y=scrollY;const dy=y-lastY;lastY=y;
   vel+=(dy-vel)*0.12;
@@ -881,8 +838,6 @@ function frame(){
   const max=document.documentElement.scrollHeight-innerHeight;
   barra.style.transform=`scaleX(${max>0?Math.min(1,Math.max(0,y/max)):0})`;
   if(!REDUCE){
-    if(!logoDragging)fx-=(0.45+Math.min(Math.abs(vel)*0.35,9));
-    paintLogos();
     gx+=(mx-gx)*0.04;gy+=(my-gy)*0.04;
     glow.style.transform=`translate3d(${gx-glow.offsetWidth/2}px,${gy-glow.offsetHeight/2}px,0)`;
     if(foto){const r=foto.parentNode.getBoundingClientRect();const p=Math.max(-1,Math.min(1,(r.top+r.height/2-innerHeight/2)/innerHeight));foto.style.transform=`translate3d(0,${p*-38}px,0) scale(1.12)`}
