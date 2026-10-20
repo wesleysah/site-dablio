@@ -62,7 +62,8 @@ h1,h2,h3{font-family:var(--f);font-weight:700;margin:0;text-wrap:balance;letter-
 .eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 22px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--bone-dim)}
 .eyebrow::before{content:"";width:28px;height:1px;background:var(--sol)}
 .btn{will-change:transform;display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:15px;text-decoration:none;padding:14px 22px;border-radius:999px;border:1px solid transparent;cursor:pointer;transition:transform .2s var(--ease),background .25s ease,color .25s ease,border-color .25s}
-.btn:active,.icbtn:active,.vw-arrow:active{transform:scale(.97)}
+.btn:active,.icbtn:active{transform:scale(.97)}
+.vw-arrow:active{transform:translateY(-50%) scale(.94)}
 .btn-sol{background:var(--sol);color:var(--sol-ink)}
 .btn-line{border-color:var(--line);color:var(--bone);background:transparent;font-weight:400}
 .btn-line:hover{border-color:var(--bone)}
