@@ -359,7 +359,7 @@ html.intro body::after{content:"";position:fixed;inset:0;background:#050506;z-in
     </div>
   </section>
 
-  <section class="sec" id="servicos" aria-labelledby="ts" style="padding-top:0">
+  <section class="sec" id="servicos" aria-labelledby="ts">
     <div class="wrap">
       <div class="sec-head">
         <div>
@@ -384,8 +384,8 @@ html.intro body::after{content:"";position:fixed;inset:0;background:#050506;z-in
             </div>
           </div></div>
         </div>
-        <div class="serv-item serv-leque serv-emb rv" style="--d:0.06s">
-          <button type="button" aria-expanded="false" aria-controls="sv1"><span class="nome">Embalagens</span><span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="serv-item serv-leque serv-emb rv open" style="--d:0.06s">
+          <button type="button" aria-expanded="true" aria-controls="sv1"><span class="nome">Embalagens</span><span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button>
           <div class="serv-body" id="sv1"><div><div class="in"><p>Desenvolvemos embalagens e rótulos que apresentam o produto com clareza e identidade. Do conceito visual ao arquivo preparado para produção.</p><ul><li>Rótulos</li><li>Linha de produtos</li><li>Mockups</li><li>Arte-final</li></ul></div>
             <div class="emb">
               <div class="leque" id="embLeque" tabindex="0" aria-roledescription="carrossel" aria-label="Embalagens. Use as setas para navegar">
@@ -825,7 +825,7 @@ document.querySelectorAll('.serv-item').forEach(d=>{
     const b=document.createElement('button');
     b.className='lq-card';b.type='button';b.tabIndex=-1;
     b.setAttribute('aria-label',`${nome}, ${marca}`);
-    b.innerHTML=`<img data-src="proj/embalagens/${String(i+1).padStart(2,'0')}.webp" alt="" draggable="false" width="567" height="698">`;
+    b.innerHTML=`<img data-src="proj/embalagens/${String(i+1).padStart(2,'0')}.webp" alt="" loading="lazy" draggable="false" width="567" height="698">`;
     b.addEventListener('click',()=>{if(mov)return;if(i===at)girar(1);else{at=i;pos()}});
     stage.appendChild(b);return b;
   });
