@@ -2,6 +2,10 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
+<script>
+/* Se o subdomínio da proposta de tráfego cair no site principal, leva direto para a proposta */
+(function(){var h=location.hostname;if(h==='propostatrafego.dablioagencia.com'&&location.pathname.indexOf('/trafego/')!==0)location.replace('/trafego/'+location.search+location.hash);})();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dáblio | Agência de publicidade e branding em Mossoró, RN</title>
 <meta name="description" content="Agência de publicidade em Mossoró, RN, desde 2003. Identidade visual, embalagens, sites, redes sociais, tráfego pago e audiovisual.">
