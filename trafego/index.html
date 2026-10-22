@@ -121,7 +121,8 @@ h1,h2,h3{font-family:var(--f);font-weight:700;margin:0;text-wrap:balance;letter-
 .sec-head p{max-width:46ch;color:var(--bone-dim);font-weight:300;margin:20px 0 0}
 .sec-head.centro{text-align:center}
 .sec-head.centro .eyebrow{justify-content:center}
-.sec-head.centro h2{margin-inline:auto}
+.sec-head.centro h2,.sec-head.centro p{margin-inline:auto}
+.leque-site{display:flex;justify-content:center;margin-top:28px}
 
 /* TRABALHOS: leque de projetos */
 .leque{position:relative;touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:grab;overflow-x:hidden;overflow-x:clip;padding-block:24px 8px;margin-inline:calc(var(--gutter)*-1)}
@@ -376,8 +377,9 @@ html.intro body::after{content:"";position:fixed;inset:0;background:#050506;z-in
   <section class="sec" id="trabalhos" aria-labelledby="t3">
     <div class="wrap">
       <div class="sec-head centro">
-        <div class="eyebrow">04 · Portfólio</div>
-        <h2 id="t3" class="split">Marcas que confiam na Dáblio.</h2>
+        <div class="eyebrow">04 · Além do tráfego</div>
+        <h2 id="t3" class="split">Não apenas tráfego.</h2>
+        <p class="rola">Temos um ecossistema completo para atender sua empresa, da marca ao anúncio.</p>
       </div>
       <div class="leque rv" id="leque" tabindex="0" aria-roledescription="carrossel" aria-label="Projetos. Use as setas para navegar e Enter para abrir">
         <div class="leque-palco" id="lequePalco"></div>
@@ -388,6 +390,7 @@ html.intro body::after{content:"";position:fixed;inset:0;background:#050506;z-in
         <button class="icbtn" type="button" id="lqNext" aria-label="Próximo projeto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
       </div>
       <p class="leque-dica">Arraste para navegar. Toque no projeto da frente para ver completo.</p>
+      <div class="leque-site rv"><a class="btn btn-line" href="https://dablioagencia.com" target="_blank" rel="noopener">Conhecer a Dáblio<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a></div>
     </div>
   </section>
 
