@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <script>
-/* Se o subdomínio da proposta de tráfego cair no site principal, leva direto para a proposta */
-(function(){var h=location.hostname;if(h==='propostatrafego.dablioagencia.com'&&location.pathname.indexOf('/trafego/')!==0)location.replace('/trafego/'+location.search+location.hash);})();
+/* Endereços antigos das propostas (subdomínios) levam para as páginas novas dentro do site */
+(function(){var h=location.hostname,m={'propostatrafego.dablioagencia.com':'/propostatrafego/','proposta.dablioagencia.com':'/propostalogo/'};if(m[h])location.replace('https://dablioagencia.com'+m[h]+location.hash);})();
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dáblio | Agência de publicidade e branding em Mossoró, RN</title>
