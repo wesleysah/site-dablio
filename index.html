@@ -238,11 +238,11 @@ dialog.vw[open] .vw-in{animation:fadeUp .8s var(--ease) both}
 .emb .leque-info{margin-top:28px}
 @supports (overflow:clip){.serv-leque .serv-body>div{overflow-x:visible;overflow-y:clip;min-height:0}}
 /* Sites: notebooks recortados com fundo transparente, então sem cartão; a sombra e o escurecimento seguem o desenho do notebook */
-.leque-sites .leque-palco{--cw:clamp(280px,44vw,600px);aspect-ratio:1200/692}
+.leque-sites .leque-palco{--cw:clamp(240px,36vw,480px);aspect-ratio:1200/692}
 .leque-sites .lq-card{background:none;border-radius:0;overflow:visible;box-shadow:none;filter:drop-shadow(0 24px 32px rgba(0,0,0,.45)) brightness(calc(1 - var(--dim,0)));transition:transform .6s cubic-bezier(.34,1.3,.5,1),opacity .4s ease,filter .6s ease}
 .leque-sites .lq-card::after{display:none}
 .leque-sites .lq-card img{object-fit:contain}
-@media (max-width:700px){.leque-sites .leque-palco{--cw:84vw}}
+@media (max-width:700px){.leque-sites .leque-palco{--cw:56vw}}
 
 /* ESTÚDIO */
 .estudio{display:grid;grid-template-columns:minmax(0,420px) minmax(0,60ch);justify-content:center;gap:clamp(36px,6vw,96px);align-items:center}
