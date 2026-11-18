@@ -248,6 +248,11 @@ dialog.vw[open] .vw-in{animation:fadeUp .8s var(--ease) both}
 /* Leque de embalagens: mesmo leque dos projetos, escondido dentro do item Embalagens */
 .emb{padding-bottom:48px}
 .emb .leque-info{margin-top:28px}
+/* Respiro nas seções com leque: mais ar acima do título, antes do leque e até a próxima linha */
+.serv-leque>button{padding-top:clamp(44px,5.5vw,76px)}
+.serv-leque .serv-body .in{padding-bottom:clamp(32px,4vw,56px)}
+.serv-leque .emb{padding-bottom:clamp(64px,8vw,112px)}
+.serv-leque .emb .leque-info{margin-top:clamp(28px,3vw,44px)}
 @supports (overflow:clip){.serv-leque .serv-body>div{overflow-x:visible;overflow-y:clip;min-height:0}}
 /* Sites: notebooks recortados com fundo transparente, então sem cartão; a sombra e o escurecimento seguem o desenho do notebook */
 .leque-sites .leque-palco{--cw:clamp(280px,46vw,620px);aspect-ratio:1200/692}
