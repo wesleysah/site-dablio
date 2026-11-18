@@ -132,6 +132,17 @@ h1,h2,h3{font-family:var(--f);font-weight:700;margin:0;text-wrap:balance;letter-
 .lq-card img{width:100%;height:100%;object-fit:cover;pointer-events:none;-webkit-user-drag:none}
 .lq-card::after{content:"";position:absolute;inset:0;border-radius:inherit;background:rgba(13,13,15,var(--dim,0));box-shadow:inset 0 0 0 1px rgba(236,235,230,.08);pointer-events:none;transition:background .6s ease}
 .leque.arrastando .lq-card.on{transition:none}
+/* Baralho: três páginas do projeto da frente aparecem por trás dele, para mostrar que há mais coisa dentro */
+#leque{padding-bottom:30px}
+.lq-pilha{position:absolute;inset:0;z-index:5;pointer-events:none;--abre:1}
+.lq-pilha i{position:absolute;inset:0;border-radius:10px;overflow:hidden;background:var(--ink-2);box-shadow:0 18px 40px rgba(0,0,0,.45);opacity:0;transform:scale(.94);transition:transform .7s cubic-bezier(.34,1.3,.5,1),opacity .3s ease}
+.lq-pilha i::after{content:"";position:absolute;inset:0;background:rgba(13,13,15,.22);box-shadow:inset 0 0 0 1px rgba(236,235,230,.08)}
+.lq-pilha img{width:100%;height:100%;object-fit:cover}
+.lq-pilha.on i{opacity:var(--p,1)}
+.lq-pilha.on i:nth-child(1){transform:translate3d(calc(-9%*var(--p,1)*var(--abre)),calc(6%*var(--p,1)*var(--abre)),0) rotate(calc(-7deg*var(--p,1)*var(--abre))) scale(.94)}
+.lq-pilha.on i:nth-child(2){transform:translate3d(calc(9%*var(--p,1)*var(--abre)),calc(7%*var(--p,1)*var(--abre)),0) rotate(calc(6deg*var(--p,1)*var(--abre))) scale(.94);transition-delay:.06s}
+.lq-pilha.on i:nth-child(3){transform:translate3d(calc(1%*var(--p,1)*var(--abre)),calc(-8%*var(--p,1)*var(--abre)),0) rotate(calc(-1.5deg*var(--p,1)*var(--abre))) scale(.94);transition-delay:.12s}
+@media (hover:hover) and (pointer:fine){.leque-palco:has(.lq-card.on:hover) .lq-pilha{--abre:1.6}}
 .leque-info{display:flex;align-items:center;justify-content:center;gap:clamp(16px,3vw,40px);margin-top:36px}
 .leque-txt{text-align:center;width:min(100%,340px);min-width:0}
 .leque-txt b{display:block;font-size:clamp(22px,2.4vw,32px);letter-spacing:-.02em;line-height:1.1;margin:0 0 6px}
@@ -738,6 +749,22 @@ const cards=CASES.map((c,i)=>{
   b.addEventListener('click',()=>{if(lqMoveu)return;if(i===ativo)abrir(i,1);else{ativo=i;posLeque()}});
   palco.appendChild(b);return b;
 });
+/* Baralho atrás do projeto da frente: troca as páginas e "dá as cartas" de novo a cada projeto */
+const PILHA_PGS=[2,5,8];
+const pilhaEl=document.createElement('div');pilhaEl.className='lq-pilha';pilhaEl.setAttribute('aria-hidden','true');
+pilhaEl.innerHTML=PILHA_PGS.map(()=>'<i><img alt="" draggable="false" width="1080" height="1350"></i>').join('');
+palco.prepend(pilhaEl);
+const pilhaImgs=[...pilhaEl.querySelectorAll('img')];
+let pilhaDe=-1,pilhaT=0;
+function pilha(){
+  if(pilhaDe===ativo)return;pilhaDe=ativo;
+  pilhaEl.classList.remove('on');clearTimeout(pilhaT);
+  const id=CASES[ativo].id,vez=ativo;
+  pilhaT=setTimeout(()=>{
+    pilhaImgs.forEach((im,k)=>{im.src=pg(id,PILHA_PGS[k])});
+    Promise.all(pilhaImgs.map(im=>im.decode().catch(()=>{}))).then(()=>{if(vez===ativo)pilhaEl.classList.add('on')});
+  },200);
+}
 function posLeque(){
   const n=CASES.length,k=innerWidth<700?.6:1;
   cards.forEach((b,i)=>{
@@ -752,6 +779,7 @@ function posLeque(){
   });
   const c=CASES[ativo];
   $('#lqNome').textContent=c.nome;$('#lqSeg').textContent=c.seg;
+  pilha();
 }
 function girar(d){ativo=(ativo+d+CASES.length)%CASES.length;posLeque()}
 $('#lqPrev').onclick=()=>girar(-1);
